@@ -10,9 +10,12 @@ mutable struct Node{T}
     demand::T
 end
 
-struct Edge
-    cost::Integer
-    capacty::Integer
+
+mutable struct Edge{T}
+    index::Int
+    cost::T
+    capacty::T
+end
 end
 
 
