@@ -26,7 +26,11 @@ struct Graph{T}
 end
 
 
-function adj(graph::Graph, node::Node)::Vector{Node{T}}
+"""
+    adj(graph::Graph, node::Node)
+
+Returns a `Vector` of `Node`s adjacent to the input 'node'.
+"""
 function adj(graph::Graph, node::Node)::Vector{Node}
     node_ind = node.index
     edge_start_ind = graph.first_out[node_ind]
