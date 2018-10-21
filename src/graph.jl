@@ -16,6 +16,13 @@ mutable struct Edge{T}
     cost::T
     capacty::T
 end
+
+
+struct Graph{T}
+    nodes::Vector{Node{T}}
+    edges::Vector{Edge{T}}
+    first_out::Vector{Int}
+    end_node::Vector{Int}
 end
 
 
