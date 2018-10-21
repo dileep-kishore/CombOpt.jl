@@ -4,9 +4,10 @@
     A type representing an undirected graph
 """
 
-struct Node
-    supply::Integer
-    demand::Integer
+mutable struct Node{T}
+    index::Int
+    supply::T
+    demand::T
 end
 
 struct Edge
