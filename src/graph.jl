@@ -27,6 +27,7 @@ end
 
 
 function adj(graph::Graph, node::Node)::Vector{Node{T}}
+function adj(graph::Graph, node::Node)::Vector{Node}
     node_ind = node.index
     edge_start_ind = graph.first_out[node_ind]
     edge_end_ind = graph.first_out[node_ind + 1]
