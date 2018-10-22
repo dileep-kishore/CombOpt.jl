@@ -1,7 +1,7 @@
 """
     Graph{T}
 
-    A type representing an undirected graph
+A type representing an undirected graph
 """
 
 mutable struct Node{T}
