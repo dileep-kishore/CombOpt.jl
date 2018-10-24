@@ -14,7 +14,7 @@ end
 mutable struct Edge{T}
     index::Int
     cost::T
-    capacty::T
+    capacity::T
 end
 
 
