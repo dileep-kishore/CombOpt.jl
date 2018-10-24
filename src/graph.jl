@@ -4,7 +4,12 @@
 A type representing an undirected graph
 """
 
-mutable struct Node{T}
+"""
+    Node{T<:Int}(index::Int, supply::T, demand::T)
+
+Defines the `Node` struct
+"""
+mutable struct Node{T<:Int}
     index::Int
     supply::T
     demand::T
