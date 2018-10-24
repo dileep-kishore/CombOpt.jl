@@ -16,7 +16,12 @@ mutable struct Node{T<:Int}
 end
 
 
-mutable struct Edge{T}
+"""
+    Edge{T<:Int}(index::Int, cost::T, capacity::T)
+
+Defines the `Edge` struct
+"""
+mutable struct Edge{T<:Int}
     index::Int
     cost::T
     capacity::T
