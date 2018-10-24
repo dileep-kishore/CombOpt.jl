@@ -28,7 +28,12 @@ mutable struct Edge{T<:Int}
 end
 
 
-struct Graph{T}
+"""
+    Graph{T<:Int}(nodes::Vector{Node{T}}, edges::Vector{Edge{T}}, first_out::Vector{Int}, end_out::Vector{Int})
+
+Defines the `Graph` struct
+"""
+struct Graph{T<:Int}
     nodes::Vector{Node{T}}
     edges::Vector{Edge{T}}
     first_out::Vector{Int}
