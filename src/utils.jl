@@ -1,33 +1,28 @@
-function read_elist(fname::String, weighted::Bool)::Tuple{Int64, Int64, Array{Array{Int64, 1}, 1}}
-    n_nodes, n_arcs, edge_list = open(fname) do file
-        counter = 1
-        n_nodes = 0
-        n_arcs = 0
-        edge_list = Array{Int64, 1}[]
-        for l in eachline(file)
-            if counter == 1
-                if weighted
-                    n_nodes, n_arcs, l_arc = map(x -> parse(Int64, x), split(l))
-                else
-                    n_nodes, n_arcs = map(x -> parse(Int64, x), split(l))
-                end
-            else
-                push!(edge_list, map(x -> parse(Int64, x), split(l)))
-            end
-            counter += 1
-        end
-        (n_nodes, n_arcs, edge_list)
-    end
-    sorted_elist = sort(edge_list)
-    return n_nodes, n_arcs, sorted_elist
-end
+# QUESTION: Should this just be at the module level?
+using DelimitedFiles
 
-function read_file(fname::String, format::String)::Tuple{Int64, Int64, Array{Array{Int64, 1}, 1}}
-    if format == "elist"
-        return read_elist(fname)
-    elseif format == "weighted elist"
-        return read_weighted_elist(fname)
+"""
+    read_graph(fname::String, format::String, delim::AbstractChar='')
+
+Reads in a delimited file with 3 columns into a `Graph` struct
+"""
+function read_graph(fname::String, format::String, delim::AbstractChar='')::Graph
+    data, header = readdlm(fname, delim, Int64, header=true)
+    n_nodes, n_edges, = map(x -> parse(Int64, x), header)
+    assert n_edges == size(data, 1)
+    nodes = map(x -> Node(x, 0, 0), 1:n_nodes)
+    sorted_data = sort(data)
+    first_out, end_node = forward_star(n_nodes, sorted_data[:, 1:2])
+    if format == "distance"
+        edges = map(x -> Edge(x[0], x[1], 0), zip(1:n_edges, sorted_data[:, 3]))
+    elseif format == "capacity"
+        edges = map(x -> Edge(x[0], 0, x[1]), zip(1:n_edges, sorted_data[:, 3]))
+    elseif format == "assignment"
+        edges = map(x -> Edge(x[0], x[1], 0), zip(1:n_edges, sorted_data[:, 3]))
     else
-        throw(ArgumentError("Unsupported format"))
+        throw(ArgumentError("Unsupported format. Use either distance, capacity or assignment"))
     end
+    assert len(first_out) == len(nodes) + 1
+    assert len(end_node) == len(edges)
+    return Graph(nodes, edges, first_out, end_node)
 end
