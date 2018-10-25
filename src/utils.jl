@@ -1,6 +1,3 @@
-# QUESTION: Should this just be at the module level?
-using DelimitedFiles
-
 """
     read_graph(fname::String, format::String, delim::AbstractChar='')
 
