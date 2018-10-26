@@ -3,7 +3,7 @@
 
 Reads in a delimited file with 3 columns into a `Graph` struct
 """
-function read_graph(fname::String, format::String, delim::AbstractChar='')::Graph
+function read_graph(fname::String, format::String, delim::AbstractChar=' ')::Graph
     data, header = readdlm(fname, delim, Int64, header=true)
     n_nodes, n_edges, = map(x -> parse(Int64, x), header)
     assert n_edges == size(data, 1)
