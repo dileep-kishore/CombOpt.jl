@@ -7,6 +7,7 @@ module CombOpt
     export dijkstra
 
     include("graph.jl")
+    include("forward_star.jl")
     include("utils.jl")
     include("dijkstra.jl")
 
