@@ -12,7 +12,7 @@ function dijkstra(graph::Graph, source::Int64)::Array{Float64, 1}
     pred = ones(Int64, node_size) * -1
     while target ∉ Q
         # node selection
-        i = argmin([d for k, d in enumerate(dist) if k in T])
+        i = argmin([d for (k, d) in enumerate(dist) if k in T])
         push!(Q, i)
         delete!(T, i)
         # distance update
