@@ -19,7 +19,7 @@ function read_graph(fname::String, format::String; delim::AbstractChar='\t')::Gr
     else
         throw(ArgumentError("Unsupported format. Use either distance, capacity or assignment"))
     end
-    @assert len(first_out) == len(nodes) + 1 "forward_star failed"
-    @assert len(end_node) == len(edges) "forward_star failed"
+    @assert length(first_out) == length(nodes) + 1 "forward_star failed"
+    @assert length(end_node) == length(edges) "forward_star failed"
     return Graph(nodes, edges, first_out, end_node)
 end
