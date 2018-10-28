@@ -11,11 +11,11 @@ function read_graph(fname::String, format::String; delim::AbstractChar='\t')::Gr
     sorted_data = sort(data, dims = 1)
     first_out, end_node = forward_star(n_nodes, sorted_data[:, 1:2])
     if format == "distance"
-        edges = map(x -> Edge(x[0], x[1], 0), zip(1:n_edges, sorted_data[:, 3]))
+        edges = map(x -> Edge(x[1], x[2], 0), zip(1:n_edges, sorted_data[:, 3]))
     elseif format == "capacity"
-        edges = map(x -> Edge(x[0], 0, x[1]), zip(1:n_edges, sorted_data[:, 3]))
+        edges = map(x -> Edge(x[1], 0, x[2]), zip(1:n_edges, sorted_data[:, 3]))
     elseif format == "assignment"
-        edges = map(x -> Edge(x[0], x[1], 0), zip(1:n_edges, sorted_data[:, 3]))
+        edges = map(x -> Edge(x[1], x[2], 0), zip(1:n_edges, sorted_data[:, 3]))
     else
         throw(ArgumentError("Unsupported format. Use either distance, capacity or assignment"))
     end
