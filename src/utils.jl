@@ -10,7 +10,9 @@ function read_graph(fname::String, format::String; delim::AbstractChar='\t')::Gr
     nodes = map(x -> Node(x, 0, 0), 1:n_nodes)
     sorted_data = sortslices(data, dims = 1)
     first_out, end_node = forward_star(n_nodes, sorted_data[:, 1:2])
-    if format == "distance"
+    if format == "simple"
+        edges = map(x -> Edge(x[1], 0, 0), 1:n_edges)
+    elseif format == "distance"
         edges = map(x -> Edge(x[1], x[2], 0), zip(1:n_edges, sorted_data[:, 3]))
     elseif format == "capacity"
         edges = map(x -> Edge(x[1], 0, x[2]), zip(1:n_edges, sorted_data[:, 3]))
