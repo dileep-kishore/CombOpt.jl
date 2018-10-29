@@ -13,7 +13,7 @@ function forward_star(n_nodes::Int64, edge_list::Array{Int64, 2})::Tuple{Array{I
             first_out[node] = ind
             continue
         end
-        for i in size(edge_list, 1)
+        for i in ind:size(edge_list, 1)
             source = edge_list[i, 1]
             target = edge_list[i, 2]
             if source == node
