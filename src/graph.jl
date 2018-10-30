@@ -58,7 +58,7 @@ end
 
 
 """
-    size(graph::Graph, dim::Integer)
+    size(graph::Graph, dim::Integer)::Integer
 
 Returns the size of the graph along the 'dims'
 Where, 'dims' can be one of 1 == nodes and 2 == edges
