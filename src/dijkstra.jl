@@ -12,7 +12,8 @@ function dijkstra(graph::Graph, source::Int64, target::Int64)::Array{Float64, 1}
     pred = ones(Int64, node_size) * -1
     while target ∉ Q
         # node selection
-        node_ind = argmin([d for (k, d) in enumerate(dist) if k in T])
+        untraversed_nodes = [(k, d) for (k, d) in enumerate(dist) if k in T]
+        node_ind = untraversed_nodes[argmin(untraversed_nodes)][1]
         push!(Q, node_ind)
         delete!(T, node_ind)
         # distance update
