@@ -72,3 +72,19 @@ function Base.size(graph::Graph, dim::Integer)::Integer
         throw(ArgumentError("dims can only be either 1 (nodes) or 2 (edges)"))
     end
 end
+
+"""
+    path(pred::Vector{Int64}, target::Int64, source::Int64)::Vector{Int64}
+
+Returns the path from source to target given the `Vector` of predecessors
+"""
+function path(pred::Vector{Int64}, target::Int64, source::Int64)::Vector{Int64}
+    path_arr = Vector{Int64}([target])
+    x = pred[target]
+    while x != source
+        y = pred[x]
+        push!(path_arr, y)
+        x = y
+    end
+    return reverse(path_arr)
+end
