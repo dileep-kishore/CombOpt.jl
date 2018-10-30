@@ -55,4 +55,20 @@ function adj(graph::Graph, node::Node)::Vector{Tuple{Node, Edge}}
     edges = graph.edges[edge_start_ind:edge_end_ind-1]
     return collect(zip(nodes, edges))
 end
+
+
+"""
+    size(graph::Graph, dim::Integer)
+
+Returns the size of the graph along the 'dims'
+Where, 'dims' can be one of 1 == nodes and 2 == edges
+"""
+function Base.size(graph::Graph, dim::Integer)::Integer
+    if dim == 1
+        return size(graph.nodes, 1)
+    elseif dim == 2
+        return size(graph.edges, 1)
+    else
+        throw(ArgumentError("dims can only be either 1 (nodes) or 2 (edges)"))
+    end
 end
