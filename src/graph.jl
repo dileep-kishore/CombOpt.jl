@@ -44,12 +44,15 @@ end
 """
     adj(graph::Graph, node::Node)
 
-Returns a `Vector` of `Node`s adjacent to the input 'node'.
+Returns a `Vector` of pairs of (`Node`, `Edge`)
 """
-function adj(graph::Graph, node::Node)::Vector{Node}
+function adj(graph::Graph, node::Node)::Vector{Tuple{Node, Edge}}
     node_ind = node.index
     edge_start_ind = graph.first_out[node_ind]
     edge_end_ind = graph.first_out[node_ind + 1]
     end_nodes = graph.end_node[edge_start_ind:edge_end_ind-1]
-    return graph.nodes[end_nodes]
+    nodes = graph.nodes[end_nodes]
+    edges = graph.edges[edge_start_ind:edge_end_ind-1]
+    return collect(zip(nodes, edges))
+end
 end
