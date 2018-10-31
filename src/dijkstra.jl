@@ -3,7 +3,7 @@
 
 The shortest path distances using `Dijkstra's` algorithm
 """
-function dijkstra(graph::Graph, source::Int64, target::Int64)::Tuple{Vector{Float64}, Vector{Int64}}
+function dijkstra(graph::Graph, source::Int, target::Int)::Tuple{Vector{AbstractFloat}, Vector{Int}}
     node_size = size(graph, 1)
     dist = ones(Float64, node_size) * Inf
     dist[1] = 0.0
