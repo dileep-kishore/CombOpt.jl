@@ -12,8 +12,8 @@ function dijkstra(graph::Graph, source::Int64, target::Int64)::Tuple{Vector{Floa
     pred = ones(Int64, node_size) * -1
     while target ∉ Q
         # node selection
-        untraversed_nodes = [(k, d) for (k, d) in enumerate(dist) if k in T]
-        node_ind = untraversed_nodes[argmin(untraversed_nodes)][1]
+        untraversed_nodes = [(d, k) for (k, d) in enumerate(dist) if k in T]
+        node_ind = untraversed_nodes[argmin(untraversed_nodes)][2]
         push!(Q, node_ind)
         delete!(T, node_ind)
         # distance update
