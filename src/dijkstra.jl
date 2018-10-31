@@ -1,5 +1,5 @@
 """
-    dijkstra(graph::Graph, source::Int)::Dict{Int, Int}
+    dijkstra(graph::Graph, source::Integer, target::Integer)::Tuple{Vector{AbstractFloat}, Vector{Integer}}
 
 The shortest path distances using `Dijkstra's` algorithm
 """
