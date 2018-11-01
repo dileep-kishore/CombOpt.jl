@@ -1,7 +1,8 @@
 """
-    dijkstra(graph::Graph, source::Int, target::Int)::Tuple{Vector{AbstractFloat}, Vector{Int}}
+    dijkstra(graph::Graph, source::Int, target::Int)::Tuple{AbstractFloat, Vector{Int}}
 
-The shortest path distances using `Dijkstra's` algorithm
+The shortest path distance from `source` to `target` using `Dijkstra's` algorithm
+Also returns the shortest path
 """
 function dijkstra(graph::Graph, source::Int, target::Int)::Tuple{AbstractFloat, Vector{Int}}
     node_size = size(graph, 1)
