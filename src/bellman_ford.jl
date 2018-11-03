@@ -9,8 +9,8 @@ function bellman_ford(graph::Graph, source::Int)::Tuple{Vector{AbstractFloat}, V
     dist[source] = 0.0
     pred = ones(Int64, node_size) * -1
     for k ∈ 1:node_size-1
-        for i ∈ 1:node_size
-            curr_node = graph.nodes[i]
+        for node_ind ∈ 1:node_size
+            curr_node = graph.nodes[node_ind]
             for (neigh, edge) ∈ adj(graph, curr_node)
                 t_ind = neigh.index
                 weight = edge.cost
