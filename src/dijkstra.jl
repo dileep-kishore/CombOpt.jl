@@ -7,7 +7,7 @@ Also returns the shortest path
 function dijkstra(graph::Graph, source::Int, target::Int)::Tuple{AbstractFloat, Vector{Int}}
     node_size = size(graph, 1)
     dist = ones(Float64, node_size) * Inf
-    dist[1] = 0.0
+    dist[source] = 0.0
     Q = Set{Int64}()  # visited nodes
     T = Set{Int64}(1:node_size)  # unvisited nodes
     pred = ones(Int64, node_size) * -1
