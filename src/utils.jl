@@ -1,7 +1,7 @@
 """
     read_graph(fname::String, format::String, delim::AbstractChar='')
 
-Reads in a delimited file with 3 columns into a `Graph` struct
+Reads in a delimited file with 2 (simple) or 3 columns into a `Graph` struct
 """
 function read_graph(fname::String, format::String; delim::AbstractChar='\t')::Graph
     data, header = readdlm(fname, delim, Int64, header=true)
