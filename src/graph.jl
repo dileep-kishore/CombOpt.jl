@@ -73,6 +73,7 @@ function Base.size(graph::Graph, dim::Integer)::Integer
     end
 end
 
+
 """
     path(pred::Vector{Int64}, target::Int64, source::Int64)::Vector{Int64}
 
